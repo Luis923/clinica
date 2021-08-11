@@ -9,12 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        /* session_start();
-        if(!isset($_SESSION["usuario"])){
-            header("location:login.php");
-        } */
-    ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br><br><br><br><br><br>
@@ -23,10 +17,10 @@
                 <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
                 <h1>Bienvenido</h1>
             <div class="mb-3">
-                    <a class="btn btn-primary" href="<?php echo urlsite ?>?page=paciente&opcion=form_diagnosticar" role="button">Realizar evaluacion diagnostica</a>
+                    <a class="btn btn-primary" href="<?php echo urlsite ?>?page=diagnostico&opcion=form_insertar" role="button">Realizar evaluacion diagnostica</a>
             </div>
             <div class="mb-3">
-                    <a class="btn btn-primary" href="<?php echo urlsite ?>?page=paciente" role="button">Ver resultados</a>
+                    <a class="btn btn-primary" href="<?php echo urlsite ?>?page=paciente&opcion=form_resultados" role="button">Ver resultados</a>
             </div>
                 
                 

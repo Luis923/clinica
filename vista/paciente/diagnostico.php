@@ -12,12 +12,6 @@
 </head>
 
 <body>
-    <?php
-        /* session_start();
-        if(!isset($_SESSION["usuario"])){
-            header("location:login.php");
-        } */
-    ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br>
@@ -171,13 +165,11 @@
                 <div class="example-result" id="result"></div>
                 <br>
                 <br>
-                <form action="enviar_diagnostico.php" method="post">
+                <form action="<?php echo urlsite ?>?page=diagnostico&opcion=insertar" method="post">
                     <input type="text" class="form-control" name="resultado" id="resultado">
                     <br>
                     <button type="submit" name="enviar" class="btn btn-primary" value="Enviar">Enviar diagnostico</button>
-                </form>
-
-                       
+                </form>                   
             </div>
         </div>
     </div>  

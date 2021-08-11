@@ -1,6 +1,6 @@
 <?php
     require "modelo/conexion.php";
-    class Paciente{
+    class Diagnostico{
         private $_db;
         public function __construct(){
             $this->_db = new Conexion();
@@ -27,17 +27,23 @@
             $this->_db->desconectar();
             return $this->lista;
         }
-        public function insertar($data){ 
+        public function insertar($data,$usuario){ 
             $this->_db->conectar();
-            $consulta = $this->_db->conexion->query("SELECT *FROM  usuarios WHERE usuario = '$data[4]'");
+            $consulta = $this->_db->conexion->prepare("SELECT *FROM  usuarios WHERE usuario = '$usuario'");
             $consulta -> execute();
             $row=$consulta ->fetch(PDO::FETCH_OBJ);
             $this->_db->desconectar();
+
+            $this->_db->conectar();
+            $consulta2 = $this->_db->conexion->prepare("SELECT *FROM  paciente WHERE idusuario = '$row->idusuario'");
+            $consulta2 -> execute();
+            $row2=$consulta2 ->fetch(PDO::FETCH_OBJ);
+            $this->_db->desconectar();
             
             $this->_db->conectar();
-            $consulta2 = $this->_db->conexion->query("INSERT paciente VALUES(default,'$data[0]','$data[1]','$data[2]','$data[3]','$row->idusuario')");
+            $consulta3 = $this->_db->conexion->query("INSERT INTO diagnostico VALUES (default,now(),'$data','$row2->idpaciente')");
             $this->_db->desconectar();
-            if($consulta2)
+            if($consulta3)
                 return true;
             else   
                 return false;

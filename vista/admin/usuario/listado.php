@@ -9,12 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        /* session_start();
-        if(!isset($_SESSION["usuario"])){
-            header("location:login.php");
-        } */
-    ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br>
@@ -35,14 +29,14 @@
                 </THEAD>
                 <TBODY>
                 <?php foreach($datos as $v): ?>
-                    <TR>
+                    <TR> 
                     <TD><?php echo $v->iddiagnostico ?></TD>
                     <TD CLASS='fechas'><?php echo $v->fecha ?></TD>
                     <TD><?php echo $v->nombre ?></TD>
                     <TD><?php echo $v->resultado ?></TD>
                     <TD>
-                        <a href="<?php echo urlsite ?>?page=categoria&opcion=form_editar&id=<?php echo $v->id ?>">Editar</a>
-                        <a href="<?php echo urlsite ?>?page=categoria&opcion=eliminar&id=<?php echo $v->id ?>" onclick="return confirm('SEGURO?')">Eliminar</a>
+                        <!-- <a href="<?php echo urlsite ?>?page=categoria&opcion=form_editar&id=<?php /* echo $v->id */ ?>">Editar</a>
+                        <a href="<?php echo urlsite ?>?page=categoria&opcion=eliminar&id=<?php /* echo $v->id */ ?>" onclick="return confirm('SEGURO?')">Eliminar</a> -->
 
                     </TD>
                     </TR>

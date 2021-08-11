@@ -9,90 +9,34 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        session_start();
-        if(!isset($_SESSION["usuario"])){
-            header("location:login.php");
-        }
-    ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br>
         <div class="row justify-content-center">
             <div class="col-4 p-5" id="login">
-                <p><a href="cierre.php">Cerrar sesion</a></p>
-                <p><a href="paciente_registrado.php">Inicio</a></p>
+                <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
+                <p><a href="<?php echo urlsite ?>?page=paciente">Inicio</a></p>
                 <h1>MIS RESULTADOS</h1>  
                 <br>
-                <?php
-                    try{
+                <TABLE class='table'>
+                <THEAD class='table-dark'>
+                <TR>
+                <TH>N°</TH>
+                <TH>FECHA</TH>
+                <TH>RESULTADO</TH>
+                </TR>
+                </THEAD>
+                <TBODY>
+                <?php foreach($datos as $v): ?>
+                    <TR> 
+                    <TD><?php echo $v->iddiagnostico ?></TD>
+                    <TD CLASS='fechas'><?php echo $v->fecha ?></TD>
+                    <TD CLASS='result'><?php echo $v->resultado ?></TD>
+                    </TR>
+                <?php endforeach?>
+                </TBODY>
+                </TABLE>
 
-                        $usuario = $_SESSION["usuario"];
-                        /* $resultado = $_SESSION["resultado"]; */
-
-                        $conexion0 = mysqli_connect("localhost","root","","bdclinica");
-                        $sql0="SELECT *FROM  usuarios WHERE usuario = '$usuario'";
-                        $resultado0 =mysqli_query($conexion0,$sql0); 
-                        $arreglo0 = mysqli_fetch_array($resultado0);
-            
-                        $conexion1 = mysqli_connect("localhost","root","","bdclinica");
-                        $sql1="SELECT *FROM  paciente WHERE idusuario = '$arreglo0[0]'";
-                        $resultado1 =mysqli_query($conexion1,$sql1); 
-                        $arreglo1 = mysqli_fetch_array($resultado1);
-                        
-                        $conexion2 = mysqli_connect("localhost","root","","bdclinica");
-                        $sql2="SELECT *FROM diagnostico WHERE idpaciente = '$arreglo1[0]'";
-                        $resultado2 =mysqli_query($conexion2,$sql2); 
-                
-                        $nfilas = mysqli_num_rows ($resultado2);
-
-                        print("<h3>Historial</h3>");
-
-
-                        if ($nfilas > 0){
-                            print ("<TABLE class='table'>\n");
-                            print ("<THEAD class='table-dark'>\n");    
-                            print ("<TR>\n");
-                            print ("<TH>N°</TH>\n");
-                            print ("<TH>FECHA</TH>\n");
-                            print ("<TH>RESULTADO</TH>\n");
-                            print ("</TR>\n");
-                            print ("</THEAD>\n");
-                            print ("<TBODY>\n");
-
-                            for ($i=1; $i<=$nfilas; $i++)
-                            {
-                                $arreglo2 = mysqli_fetch_array($resultado2);
-
-                                print ("<TR>\n");
-                                print ("<TD>" . $i . "</TD>\n");
-                                print ("<TD>" . $arreglo2['fecha'] . "</TD>\n");
-                                print ("<TD CLASS='result'>" . $arreglo2['resultado'] . "</TD>\n"); 
-                                
-
-                                print ("</TR>\n");
-                            }
-
-                            print ("</TBODY>\n");
-                            print ("</TABLE>\n");
-                        }
-
-                        else{
-                                print ("No hay datos disponibles");
-                            
-                        }
-
-                        mysqli_close($conexion0);
-                        mysqli_close($conexion1);
-                        mysqli_close($conexion2); 
-
-                         
-
-                    }
-                    catch(expeption $e){
-                        die("error:" . $e ->get_Message());
-                    }
-                ?>
                 <h3>Grafica</h3>
                 <div>
                 <canvas id="myChart"></canvas>

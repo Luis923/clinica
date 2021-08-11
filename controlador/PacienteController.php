@@ -2,20 +2,47 @@
 require "modelo/paciente.php";
 class PacienteController{
     public static function listar(){
+        session_start();  
+        if(!isset($_SESSION["login"])){
+            header('location:'.urlsite);
+        }
         $paciente = new Paciente();
-        $datos = $paciente->buscar();
-        require "vista/paciente/listado.php";
+        $usuario = $_SESSION["login"];
+        $datos = $paciente->buscar($usuario); 
+        require "vista/paciente/resultados.php";
     }
 
     public static function form_welcome(){
+        session_start();
+        if(!isset($_SESSION["login"])){
+            header('location:'.urlsite);
+        }
         require "vista/paciente/welcome.php";
     }
     public static function form_diagnosticar(){
+        session_start();
+        if(!isset($_SESSION["login"])){
+            header('location:'.urlsite);
+        }
         require "vista/paciente/diagnostico.php";
     }
 
     public static function form_insertar(){
+        session_start();
+        if(!isset($_SESSION["login"])){
+            header('location:'.urlsite);
+        }
         require "vista/paciente/nuevo.php";
+    }
+    public static function form_resultados(){
+        $paciente = new Paciente();
+        session_start();
+        if(!isset($_SESSION["login"])){
+            header('location:'.urlsite);
+        }
+        $usuario = $_SESSION["login"];
+        $datos = $paciente->buscar($usuario); 
+        require "vista/paciente/resultados.php";
     }
 
     public static function insertar(){

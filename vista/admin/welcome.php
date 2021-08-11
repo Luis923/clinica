@@ -9,12 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        /* session_start();
-        if(!isset($_SESSION["usuario"])){
-            header("location:login.php");
-        } */
-    ?> 
     <div id="main">
         <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br><br><br>

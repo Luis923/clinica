@@ -1,14 +1,15 @@
 <?php
-require "modelo/usuario.php";
-class UsuarioController{
+require "modelo/diagnostico.php";
+class DiagnosticoController{
     public static function listar(){
-        $usuario = new Usuario();
-        $datos = $usuario->buscar();
-        session_start();
+        session_start();  
         if(!isset($_SESSION["login"])){
             header('location:'.urlsite);
         }
-        require "vista/admin/usuario/listado.php";
+        $paciente = new Paciente();
+        $usuario = $_SESSION["login"];
+        $datos = $paciente->buscar($usuario); 
+        require "vista/paciente/resultados.php";
     }
 
     public static function form_insertar(){
@@ -16,22 +17,36 @@ class UsuarioController{
         if(!isset($_SESSION["login"])){
             header('location:'.urlsite);
         }
-        require "vista/admin/usuario/nuevo.php";
+        require "vista/paciente/diagnostico.php";
+        
+    }
+    public static function form_resultados(){
+        $paciente = new Paciente();
+        session_start();
+        if(!isset($_SESSION["login"])){
+            header('location:'.urlsite);
+        }
+        $usuario = $_SESSION["login"];
+        $datos = $paciente->buscar($usuario); 
+        require "vista/paciente/resultados.php";
     }
 
-    public static function insertar(){ 
-        $_usuario= $_REQUEST['txtusuario'];
-        $_contraseña = $_REQUEST['txtcontraseña'];
+    public static function insertar(){
+        $_resultado = $_REQUEST["resultado"];
+        session_start();
+        $usuario = $_SESSION["login"];
 
-        $usuario = new Usuario();
-        $data       = [$_usuario,$_contraseña];
-        $accion     = $usuario->insertar($data);
+        $diagnostico = new Diagnostico();
+        $data       = $_resultado;
+        $accion     = $diagnostico->insertar($data,$usuario);
+        echo $accion;
+
         
         if($accion){
-            header('location:'.urlsite."?page=usuario&opcion=form_insertar");
+            header('location:'.urlsite."?page=diagnostico&opcion=form_insertar");
         }
         else
-            header('location:'.urlsite."?page=usuario&opcion=form_insertar&msg=No se pudo insertar");
+            header('location:'.urlsite."?page=diagnostico&opcion=form_insertar&msg=No se pudo insertar");
     }
 
     public static function form_editar(){
