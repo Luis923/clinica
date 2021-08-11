@@ -10,30 +10,30 @@
 </head>
 <body>
     <?php
-        session_start();
+        /* session_start();
         if(!isset($_SESSION["usuario"])){
             header("location:login.php");
-        }
+        } */
     ?> 
     <div id="main">
         <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br><br><br>
         <div class="row justify-content-center">
             <div class="col-4 m-5 p-5" id="login">
-                <p><a href="cierre.php">Cerrar sesion</a></p>
+                <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
                 <h1>
                 <?php
                     echo "Bienvenido Doctor<br>";
                 ?>
                 </h1>
                 <div class="mb-3">
-                        <a class="btn btn-primary" href="formulario_usuario.php" role="button">Agregar Usuario</a>
+                        <a class="btn btn-primary" href="<?php echo urlsite ?>?page=usuario&opcion=form_insertar" role="button">Agregar Usuario</a>
                 </div>
                 <div class="mb-3">
-                        <a class="btn btn-primary" href="formulario_paciente.php" role="button">Agregar Paciente</a>
+                        <a class="btn btn-primary" href="<?php echo urlsite ?>?page=paciente&opcion=form_insertar" role="button">Agregar Paciente</a>
                 </div>
                 <div class="mb-3">
-                        <a class="btn btn-primary" href="resultados_doctor.php" role="button">Ver resultados</a>
+                        <a class="btn btn-primary" href="<?php echo urlsite ?>?page=usuario" role="button">Ver resultados</a>
                 </div>                          
             </div>
         </div>

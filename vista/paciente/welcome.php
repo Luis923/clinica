@@ -10,27 +10,23 @@
 </head>
 <body>
     <?php
-        session_start();
+        /* session_start();
         if(!isset($_SESSION["usuario"])){
             header("location:login.php");
-        }
+        } */
     ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br><br><br><br><br><br>
         <div class="row justify-content-center">
             <div class="col-4 p-5" id="login">
-                <p><a href="cierre.php">Cerrar sesion</a></p>
-                <h1>
-                <?php
-                    echo "Bienvenido ".$_SESSION["usuario"]."<br>";
-                ?>
-                </h1>
+                <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
+                <h1>Bienvenido</h1>
             <div class="mb-3">
-                    <a class="btn btn-primary" href="formulario_diagnostico.php" role="button">Realizar evaluacion diagnostica</a>
+                    <a class="btn btn-primary" href="<?php echo urlsite ?>?page=paciente&opcion=form_diagnosticar" role="button">Realizar evaluacion diagnostica</a>
             </div>
             <div class="mb-3">
-                    <a class="btn btn-primary" href="resultados_paciente.php" role="button">Ver resultados</a>
+                    <a class="btn btn-primary" href="<?php echo urlsite ?>?page=paciente" role="button">Ver resultados</a>
             </div>
                 
                 

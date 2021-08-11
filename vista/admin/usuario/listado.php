@@ -10,76 +10,46 @@
 </head>
 <body>
     <?php
-        session_start();
+        /* session_start();
         if(!isset($_SESSION["usuario"])){
             header("location:login.php");
-        }
+        } */
     ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br>
         <div class="row justify-content-center">
-            <div class="col-4 p-5" id="login">
-                <p><a href="cierre.php">Cerrar sesion</a></p>
-                <p><a href="doctor_registrado.php">Inicio</a></p>
+            <div class="col-6 p-5" id="login">
+                <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
+                <p><a href="<?php echo urlsite ?>?page=admin">Inicio</a></p>
                 <h5>RESULTADOS DE LOS PACIENTES</h5>  
                 <br>
-                <?php
-                    try{
+                <TABLE class='table'>
+                <THEAD class='table-dark'>
+                <TR>
+                <TH>N°</TH>
+                <TH>FECHA</TH>
+                <TH>PACIENTE</TH>
+                <TH>RESULTADO</TH>
+                </TR>
+                </THEAD>
+                <TBODY>
+                <?php foreach($datos as $v): ?>
+                    <TR>
+                    <TD><?php echo $v->iddiagnostico ?></TD>
+                    <TD CLASS='fechas'><?php echo $v->fecha ?></TD>
+                    <TD><?php echo $v->nombre ?></TD>
+                    <TD><?php echo $v->resultado ?></TD>
+                    <TD>
+                        <a href="<?php echo urlsite ?>?page=categoria&opcion=form_editar&id=<?php echo $v->id ?>">Editar</a>
+                        <a href="<?php echo urlsite ?>?page=categoria&opcion=eliminar&id=<?php echo $v->id ?>" onclick="return confirm('SEGURO?')">Eliminar</a>
 
-                        $usuario = $_SESSION["usuario"];
-
-                        $conexion2 = mysqli_connect("localhost","root","","bdclinica");
-                        $sql2="SELECT *FROM diagnostico INNER JOIN paciente WHERE diagnostico.idpaciente = paciente.idpaciente";
-                        $resultado2 =mysqli_query($conexion2,$sql2); 
-                        $nfilas = mysqli_num_rows ($resultado2);
-                        
-                        print("<h5>Reporte</h5>");
-
-                        if ($nfilas > 0){
-                            print ("<TABLE class='table'>\n");
-                            print ("<THEAD class='table-dark'>\n");    
-                            print ("<TR>\n");
-                            print ("<TH>N°</TH>\n");
-                            print ("<TH>FECHA</TH>\n");
-                            print ("<TH>PACIENTE</TH>\n");
-                            print ("<TH>RESULTADO</TH>\n");
-                            print ("</TR>\n");
-                            print ("</THEAD>\n");
-                            print ("<TBODY>\n");
-
-                            for ($i=1; $i<=$nfilas; $i++)
-                            {
-                                $arreglo2 = mysqli_fetch_array($resultado2);
-
-                                print ("<TR>\n");
-                                print ("<TD>" . $i . "</TD>\n");
-                                print ("<TD CLASS='fechas'>" . $arreglo2['fecha'] . "</TD>\n");
-                                print ("<TD>" . $arreglo2['nombre'] . "</TD>\n");
-                                print ("<TD>" . $arreglo2['resultado'] . "</TD>\n"); 
-                                
-
-                                print ("</TR>\n");
-                            }
-
-                            print ("</TBODY>\n");
-                            print ("</TABLE>\n");
-                        }
-
-                        else{
-                                print ("No hay datos disponibles");
-                            
-                        }
-
-                        mysqli_close($conexion2); 
-
-                         
-
-                    }
-                    catch(expeption $e){
-                        die("error:" . $e ->get_Message());
-                    }
-                ?> 
+                    </TD>
+                    </TR>
+                <?php endforeach?>
+                </TBODY>
+                </TABLE>
+ 
                 <h5>Datos generales</h5>
                 <div>
                 <canvas id="myChart"></canvas>

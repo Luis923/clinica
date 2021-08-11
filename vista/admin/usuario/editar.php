@@ -10,10 +10,10 @@
 </head>
 <body>
     <?php
-        session_start();
+        /* session_start();
         if(!isset($_SESSION["usuario"])){
             header("location:login.php");
-        }
+        } */
     ?> 
     <div id="main">
         <img class="" src="images/login.jpg" class="img-fluid" alt="login">
@@ -23,14 +23,14 @@
                 <p><a href="cierre.php">Cerrar sesion</a></p>
                 <p><a href="doctor_registrado.php">Inicio</a></p>
                 <h1>DATOS DEL NUEVO USUARIO</h1>  
-                <form action="agregar_usuario.php" method="post">
+                <form action="<?php echo urlsite ?>?page=categoria&opcion=editar" enctype="multipart/form-data" method="post">
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" name="login">
+                        <input type="text" class="form-control" name="txtusuario" value="<?php echo $datos[0]->usuario ?>">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="txtconstraseña" value="<?php echo $datos[0]->contraseña ?>">
                     </div>
                     <button type="submit" name="agregar" class="btn btn-primary" value="Agregar">Agregar</button>
                 </form>                       

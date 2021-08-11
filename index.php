@@ -1,4 +1,52 @@
-<!DOCTYPE html>
+<?php
+    require "config.php";
+    $page = "index";
+    if(isset($_GET['page']))
+        $page = $_GET['page'];
+    switch($page){
+        case 'login':
+            require "controlador/LoginController.php";
+            LoginController::index();
+            break;
+        case 'loginauth':
+            require "controlador/LoginController.php";
+            LoginController::login();
+            break;
+        case 'logout':
+            require "controlador/LoginController.php";
+            LoginController::logout();
+            break;
+        case 'admin':
+            require "vista/admin/welcome.php";
+            break;
+        case 'usuario':
+            require "controlador/UsuarioController.php";
+            if(isset($_GET['opcion'])):
+                $metodo = $_GET['opcion'];
+                if(method_exists('UsuarioController',$metodo)):
+                    UsuarioController::{$metodo}();
+                endif;
+            else:
+                UsuarioController::listar();
+            endif;
+            break;
+        case 'paciente':
+                require "controlador/PacienteController.php";
+                if(isset($_GET['opcion'])):
+                    $metodo = $_GET['opcion'];
+                    if(method_exists('PacienteController',$metodo)):
+                        PacienteController::{$metodo}();
+                    endif;
+                else:
+                    PacienteController::form_welcome();
+                endif;
+                break;
+
+        default: echo "<a href='".urlsite."?page=login'>LOGIN</a>"; break ;
+    }
+
+?>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,4 +82,4 @@
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="popper.min.js"></script>
 </body>
-</html>
+</html> -->

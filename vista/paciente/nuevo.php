@@ -10,21 +10,21 @@
 </head>
 <body>
     <?php
-        session_start();
+        /* session_start();
         if(!isset($_SESSION["usuario"])){
             header("location:login.php");
-        }
+        } */
     ?> 
     <div id="main">
-    <img class="" src="images/login.jpg" class="img-fluid" alt="login">
-        <br>
+        <img class="" src="images/login.jpg" class="img-fluid" alt="login">
+        <br><br><br>
         <div class="row justify-content-center">
-            <div class="col-4 p-5" id="login">
-                <p><a href="cierre.php">Cerrar sesion</a></p>
-                <p><a href="doctor_registrado.php">Inicio</a></p>
-                <h4>DATOS DEL NUEVO PACIENTE</h4>  
-                <form action="agregar_paciente.php" method="post">
-                    <div class="mb-3">
+            <div class="col-4 m-5 p-5" id="login" >
+                <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
+                <p><a href="<?php echo urlsite ?>?page=admin">Inicio</a></p>
+                <h1>DATOS DEL NUEVO USUARIO</h1>  
+                <form action="<?php echo urlsite ?>?page=paciente&opcion=insertar" enctype="multipart/form-data" method="post">
+                <div class="mb-3">
                         <label for="nombre" class="form-label">nombre</label>
                         <input type="text" class="form-control" name="nombre">
                     </div>

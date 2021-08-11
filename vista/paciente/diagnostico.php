@@ -13,18 +13,18 @@
 
 <body>
     <?php
-        session_start();
+        /* session_start();
         if(!isset($_SESSION["usuario"])){
             header("location:login.php");
-        }
+        } */
     ?> 
     <div id="main">
     <img class="" src="images/login.jpg" class="img-fluid" alt="login">
         <br>
         <div class="row justify-content-center">
             <div class="col-4 p-5" id="login">
-                <p><a href="cierre.php">Cerrar sesion</a></p>
-                <p><a href="paciente_registrado.php">Inicio</a></p>
+                <p><a href="<?php echo urlsite ?>?page=logout">Cerrar sesion</a></p>
+                <p><a href="<?php echo urlsite ?>?page=paciente">Inicio</a></p>
                 <h3>EVALUACION DIAGNOSTICA</h3>  
 
                 <P>¿Presenta picazon en el pie?</P>
@@ -187,6 +187,3 @@
     <script type="text/javascript" src="index2.js"></script>
     <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-</body>
-
-</html>
