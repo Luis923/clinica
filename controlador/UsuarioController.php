@@ -3,7 +3,7 @@ require "modelo/usuario.php";
 class UsuarioController{
     public static function listar(){
         $usuario = new Usuario();
-        $datos = $usuario->buscar();
+        $datos = $usuario->buscar(); 
         session_start();
         if(!isset($_SESSION["login"])){
             header('location:'.urlsite);

@@ -27,7 +27,7 @@
                 <TH>RESULTADO</TH>
                 </TR>
                 </THEAD>
-                <TBODY>
+                <TBODY> 
                 <?php foreach($datos as $v): ?>
                     <TR> 
                     <TD><?php echo $v->iddiagnostico ?></TD>

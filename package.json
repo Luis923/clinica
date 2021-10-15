@@ -1,0 +1,42 @@
+{
+  "name": "clinica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index2.js",
+  "dependencies": {
+    "styled-components": "^5.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "critical": "^4.0.1",
+    "css-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.2.2",
+    "sass": "^1.39.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server",
+    "watch": "webpack watch --mode development",
+    "critical": "node critical.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luis923/clinica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luis923/clinica/issues"
+  },
+  "homepage": "https://github.com/Luis923/clinica#readme"
+}
